@@ -1,0 +1,15 @@
+User1
+email - satpathyrishi@gmail.com
+pass - hello
+
+User2
+email - test@example.com
+pass - 123456
+
+provider1
+email - satpathyrishi41@gmail.com
+pass - hello
+
+provider2
+email - doctor@example.com
+pass - 123456

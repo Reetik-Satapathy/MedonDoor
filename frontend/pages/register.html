@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Register</title>
+  <link rel="stylesheet" href="../css/styles.css">
+</head>
+<body>
+
+  <div class="container">
+    <h2>Register</h2>
+
+    <input type="text" id="name" placeholder="Full Name">
+    <input type="email" id="email" placeholder="Email">
+    <input type="password" id="password" placeholder="Password">
+
+    <select id="role">
+      <option value="">Select Role</option>
+      <option value="user">User</option>
+      <option value="provider">Service Provider</option>
+    </select>
+
+    <select id="serviceType" class="hidden">
+      <option value="">Select Service Type</option>
+      <option value="doctor">Doctor</option>
+      <option value="nurse">Nurse</option>
+      <option value="delivery">Medicine Delivery</option>
+    </select>
+
+    <button id="registerBtn">Register</button>
+
+    <p id="error" class="error"></p>
+
+    <p class="link">
+      Already have an account?
+      <a href="login.html">Login</a>
+    </p>
+  </div>
+
+  <script src="../js/auth.js"></script>
+</body>
+</html>
