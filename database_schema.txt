@@ -1,0 +1,169 @@
+/* ============================================================
+   DATABASE CREATION
+   ============================================================ */
+
+-- Create the main database for the healthcare application
+CREATE DATABASE healthcare_app;
+
+-- Select the database so all tables are created inside it
+USE healthcare_app;
+
+
+
+/* ============================================================
+   USERS TABLE
+   ============================================================ */
+
+-- This table stores basic authentication and role information
+-- for all users of the system.
+-- A user can be either:
+--   1. A normal user (patient)
+--   2. A service provider (doctor, nurse, delivery agent)
+
+CREATE TABLE users (
+  id INT AUTO_INCREMENT PRIMARY KEY,     -- Unique identifier for each user
+  name VARCHAR(100),                     -- Full name of the user
+  email VARCHAR(100) UNIQUE,             -- Email address (must be unique)
+  password VARCHAR(255),                 -- Encrypted password (bcrypt hash)
+  role ENUM('user','provider')            -- Role determines system access
+       DEFAULT 'user'
+);
+
+/*
+Design Note:
+- Both patients and providers are stored in the same table.
+- Role-based access control is implemented using the `role` field.
+*/
+
+
+
+/* ============================================================
+   PROVIDERS TABLE
+   ============================================================ */
+
+-- This table stores additional information specific to service providers.
+-- Every provider must be linked to an existing user in the users table.
+
+CREATE TABLE providers (
+  id INT AUTO_INCREMENT PRIMARY KEY,     -- Unique provider record ID
+  user_id INT,                           -- References theCTEATE the user record
+  service_type ENUM('doctor','nurse','delivery'),
+                                        -- Type of healthcare service offered
+  verified BOOLEAN DEFAULT FALSE,        -- Admin verification flag
+  FOREIGN KEY (user_id) REFERENCES users(id)
+);
+
+/*
+Design Note:
+- This table extends the users table instead of duplicating data.
+- Ensures clean separation between authentication data and provider details.
+*/
+
+
+
+/* ============================================================
+   SERVICES TABLE
+   ============================================================ */
+
+-- This table defines the types of services that users can book.
+-- It allows easy extension in the future.
+
+CREATE TABLE services (
+  id INT AUTO_INCREMENT PRIMARY KEY,     -- Service ID
+  name VARCHAR(50)                       -- Service name
+);
+
+-- Insert default services offered by the platform
+INSERT INTO services (name) VALUES
+('Doctor Consultation'),
+('Nurse Home Visit'),
+('Medicine Delivery');
+
+/*
+Design Note:
+- Storing services in a separate table avoids hardcoding service names.
+- Makes the system scalable and configurable.
+*/
+
+
+
+/* ============================================================
+   BOOKINGS TABLE
+   ============================================================ */
+
+-- This table represents a booking request created by a user.
+-- It tracks the full lifecycle of a healthcare service request.
+
+CREATE TABLE bookings (
+  id INT AUTO_INCREMENT PRIMARY KEY,     -- Booking ID
+  user_id INT,                           -- User who created the booking
+  provider_id INT NULL,                  -- Provider who accepted the booking
+  service_id INT,                        -- Requested service type
+  status ENUM('PENDING','PAID','ACCEPTED','COMPLETED')
+         DEFAULT 'PENDING',              -- Booking lifecycle status
+  created_at TIMESTAMP
+             DEFAULT CURRENT_TIMESTAMP   -- Time of booking creation
+);
+
+/*
+Design Note:
+- provider_id is NULL initially and set only after acceptance.
+- Status-based workflow:
+    PENDING  → ACCEPTED → COMPLETED
+- Database-level checks prevent race conditions during acceptance.
+*/
+
+
+
+/* ============================================================
+   PAYMENTS TABLE
+   ============================================================ */
+
+-- This table stores payment-related information for bookings.
+-- It allows future integration with payment gateways.
+
+CREATE TABLE payments (
+  id INT AUTO_INCREMENT PRIMARY KEY,     -- Payment record ID
+  booking_id INT,                        -- Related booking
+  transaction_id VARCHAR(100),           -- Gateway transaction reference
+  amount DECIMAL(10,2),                  -- Payment amount
+  status VARCHAR(20)                     -- Payment status (SUCCESS / FAILED)
+);
+
+/*
+Design Note:
+- Payments are stored separately to keep booking logic independent.
+- This allows support for multiple payment methods in the future.
+*/
+
+
+
+/* ============================================================
+   RATINGS TABLE
+   ============================================================ */
+
+-- This table stores ratings and reviews submitted by users
+-- after a booking is marked as COMPLETED.
+
+CREATE TABLE ratings (
+  id INT AUTO_INCREMENT PRIMARY KEY,     -- Rating record ID
+  booking_id INT,                        -- Related booking
+  user_id INT,                           -- User who gave the rating
+  provider_id INT,                       -- Provider being rated
+  rating INT CHECK (rating BETWEEN 1 AND 5),
+                                        -- Rating value (1 to 5)
+  comment TEXT,                          -- Optional textual feedback
+  created_at TIMESTAMP
+             DEFAULT CURRENT_TIMESTAMP,  -- Time of rating submission
+
+  FOREIGN KEY (booking_id) REFERENCES bookings(id),
+  FOREIGN KEY (user_id) REFERENCES users(id),
+  FOREIGN KEY (provider_id) REFERENCES users(id)
+);
+
+/*
+Design Note:
+- Ratings are allowed only after booking completion.
+- Each rating is tied to a valid booking, user, and provider.
+- CHECK constraint enforces valid rating values.
+*/
