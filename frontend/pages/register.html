@@ -2,39 +2,74 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Register</title>
-  <link rel="stylesheet" href="../css/styles.css">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>MedOnDoor - Register</title>
+  <link rel="stylesheet" href="../css/register.css">
 </head>
 <body>
 
-  <div class="container">
-    <h2>Register</h2>
+  <div class="login-wrapper">
+    <div class="left-panel">
+      <div class="logo-container">
+        <div class="logo-icon">
+          <img src="../css/Images/logo.png" alt="MedOnDoor Logo">
+        </div>
+        <h1 class="brand-name">MedOnDoor</h1>
+      </div>
+      <div class="illustration">
+        <img src="../css/Images/register.png" alt="Medical Care Illustration">
+      </div>
+    </div>
 
-    <input type="text" id="name" placeholder="Full Name">
-    <input type="email" id="email" placeholder="Email">
-    <input type="password" id="password" placeholder="Password">
+    <div class="right-panel">
+      <div class="form-container">
+        <h2 class="title">Create new<br>Account</h2>
+        <hr class="divider">
 
-    <select id="role">
-      <option value="">Select Role</option>
-      <option value="user">User</option>
-      <option value="provider">Service Provider</option>
-    </select>
+        <div class="input-group">
+          <label for="name">Full Name</label>
+          <input type="text" id="name" placeholder="Full Name">
+        </div>
 
-    <select id="serviceType" class="hidden">
-      <option value="">Select Service Type</option>
-      <option value="doctor">Doctor</option>
-      <option value="nurse">Nurse</option>
-      <option value="delivery">Medicine Delivery</option>
-    </select>
+        <div class="input-group">
+          <label for="email">Email Address</label>
+          <input type="email" id="email" placeholder="Email">
+        </div>
 
-    <button id="registerBtn">Register</button>
+        <div class="input-group">
+          <label for="password">Password</label>
+          <input type="password" id="password" placeholder="******">
+        </div>
 
-    <p id="error" class="error"></p>
+        <div class="input-group">
+          <label for="role">Select Role</label>
+          <select id="role">
+            <option value="">Select Role</option>
+            <option value="user">User</option>
+            <option value="provider">Service Provider</option>
+          </select>
+        </div>
 
-    <p class="link">
-      Already have an account?
-      <a href="login.html">Login</a>
-    </p>
+        <div class="input-group" id="serviceGroup">
+          <label for="serviceType">Select Service Type</label>
+          <select id="serviceType">
+            <option value="">Select Service Type</option>
+            <option value="doctor">Doctor</option>
+            <option value="nurse">Nurse</option>
+            <option value="delivery">Medicine Delivery</option>
+          </select>
+        </div>
+
+        <a href="login.html"><p class="link">
+          Already Registered? <br>
+          Login
+        </p></a>
+
+        <p id="error" class="error"></p>
+
+        <button id="registerBtn" class="login-button">SIGN UP</button>
+      </div>
+    </div>
   </div>
 
   <script src="../js/auth.js"></script>

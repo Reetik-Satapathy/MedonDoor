@@ -4,7 +4,7 @@
 
 body {
   font-family: Arial, sans-serif;
-  background: #f4f6f8;
+  background: #f8f9fa;
   margin: 0;
   padding: 0;
 }
@@ -32,14 +32,14 @@ input, select, button {
 }
 
 button {
-  background: #007bff;
+  background: #ff0000;
   color: white;
   border: none;
   cursor: pointer;
 }
 
 button:hover {
-  background: #0056b3;
+  background: #f30606;
 }
 
 .error {

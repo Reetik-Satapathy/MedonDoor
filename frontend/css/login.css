@@ -1,0 +1,143 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+body {
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #f0f2f5;
+}
+
+.login-wrapper {
+  display: flex;
+  width: 100%;
+  max-width: 1000px;
+  height: 600px;
+  background-color: #fff;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+  overflow: hidden;
+}
+
+/* Left Panel Styling */
+.left-panel {
+  flex: 1;
+  background-color: #ff3d33; /* The signature red */
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 40px;
+  color: #000;
+}
+
+.logo-container {
+  display: flex;
+  align-items: center;
+}
+
+.logo-icon img {
+  width: 100px;
+  margin-right: 10px;
+}
+
+.brand-name {
+  font-size: 2rem;
+  font-weight: 800;
+}
+
+.illustration img {
+  max-width: 100%;
+  display: block;
+  margin: 0 auto;
+}
+
+/* Right Panel Styling */
+.right-panel {
+  flex: 1.2;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #ffffff;
+}
+
+.form-container {
+  width: 100%;
+  max-width: 350px;
+  text-align: center;
+}
+
+.title {
+  font-size: 2.5rem;
+  color: #1a2b41;
+  margin-bottom: 10px;
+}
+
+.subtitle {
+  color: #333;
+  font-family: monospace;
+  margin-bottom: 20px;
+}
+
+.divider {
+  border: 0.5px solid #ccc;
+  margin-bottom: 30px;
+}
+
+.input-group {
+  text-align: left;
+  margin-bottom: 20px;
+}
+
+.input-group label {
+  display: block;
+  font-size: 14px;
+  color: #888;
+  margin-bottom: 8px;
+}
+
+.input-group input {
+  width: 100%;
+  padding: 12px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  font-size: 16px;
+  outline: none;
+}
+
+.link {
+  color: #666;
+  font-size: 14px;
+  margin: 20px 0;
+}
+
+.link a {
+  color: #6a5acd; /* Purple link as seen in image */
+  text-decoration: underline;
+}
+
+.login-button {
+  width: 100%;
+  padding: 14px;
+  background-color: #ff3131;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background 0.3s;
+  margin-top: 10px;
+}
+
+.login-button:hover {
+  background-color: #ff3131;
+}
+
+.error {
+  color: #ff3131;
+  font-size: 12px;
+  height: 20px;
+}
