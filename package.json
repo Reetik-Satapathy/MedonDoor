@@ -1,0 +1,19 @@
+{
+  "name": "medondoor",
+  "version": "1.0.0",
+  "description": "🚑 MedOnDoor – Community Healthcare Service Platform",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Reetik-Satapathy/MedonDoor.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Reetik-Satapathy/MedonDoor/issues"
+  },
+  "homepage": "https://github.com/Reetik-Satapathy/MedonDoor#readme"
+}
