@@ -22,6 +22,12 @@ app.get("/", (req, res) => {
   res.redirect("/pages/login.html");
 });
 
-app.listen(5000, () => {
-  console.log("Server running on port 5000");
+const PORT = 5000;
+app.listen(PORT, () => {
+  console.log("=".repeat(50));
+  console.log("🚀 MedOnDoor Server is running!");
+  console.log("=".repeat(50));
+  console.log(`📍 Local:   http://localhost:${PORT}`);
+  console.log(`📍 Network: http://127.0.0.1:${PORT}`);
+  console.log("=".repeat(50));
 });
