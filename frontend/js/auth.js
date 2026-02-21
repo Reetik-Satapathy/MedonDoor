@@ -69,13 +69,21 @@ if (registerForm) {
   const roleSelect = document.getElementById("role");
   const serviceType = document.getElementById("serviceType");
 
+  // Initialize: hide serviceType by default and ensure it's not required
+  serviceType.classList.add("hidden");
+  serviceType.required = false;
+  serviceType.value = "";
+
   roleSelect.addEventListener("change", () => {
     if (roleSelect.value === "provider") {
+      // Show serviceType dropdown only when provider is selected
       serviceType.classList.remove("hidden");
       serviceType.required = true;
     } else {
+      // Hide serviceType dropdown when user is selected or nothing is selected
       serviceType.classList.add("hidden");
       serviceType.required = false;
+      serviceType.value = ""; // Clear the value when hidden
     }
   });
 
