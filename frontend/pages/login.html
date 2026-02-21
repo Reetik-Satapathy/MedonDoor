@@ -2,24 +2,42 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Login</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Login - MedOnDoor</title>
   <link rel="stylesheet" href="../css/styles.css">
 </head>
 <body>
-
   <div class="container">
-    <h2>Login</h2>
+    <h2>Welcome Back</h2>
+    <p class="text-center" style="color: var(--text-secondary); margin-bottom: var(--spacing-xl);">
+      Sign in to access your healthcare services
+    </p>
 
-    <input type="email" id="email" placeholder="Email">
-    <input type="password" id="password" placeholder="Password">
+    <form id="loginForm">
+      <input 
+        type="email" 
+        id="email" 
+        placeholder="Email address" 
+        required
+        autocomplete="email"
+      >
+      <input 
+        type="password" 
+        id="password" 
+        placeholder="Password" 
+        required
+        autocomplete="current-password"
+      >
+      <button type="submit" id="loginBtn">
+        Sign In
+      </button>
+    </form>
 
-    <button id="loginBtn">Login</button>
-
-    <p id="error" class="error"></p>
+    <p id="error" class="error hidden"></p>
 
     <p class="link">
-      Don’t have an account?
-      <a href="register.html">Register</a>
+      Don't have an account?
+      <a href="register.html">Create an account</a>
     </p>
   </div>
 

@@ -2,28 +2,43 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Book Service</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Book Service - MedOnDoor</title>
   <link rel="stylesheet" href="../css/styles.css">
 </head>
 <body>
-
   <div class="container">
-    <h2>Book a Service</h2>
+    <div class="dashboard-header">
+      <h2 class="dashboard-title">Book a Service</h2>
+    </div>
 
-    <select id="service">
-      <option value="">Select a service</option>
-      <option value="1">Doctor Consultation</option>
-      <option value="2">Nurse Home Visit</option>
-      <option value="3">Medicine Delivery</option>
-    </select>
+    <div class="card">
+      <div class="card-body">
+        <label for="service" style="display: block; margin-bottom: var(--spacing-sm); font-weight: 500; color: var(--text-primary);">
+          Select Healthcare Service
+        </label>
+        <select id="service" required>
+          <option value="">Choose a service...</option>
+          <option value="1">👨‍⚕️ Doctor Consultation</option>
+          <option value="2">👩‍⚕️ Nurse Home Visit</option>
+          <option value="3">💊 Medicine Delivery</option>
+        </select>
+      </div>
+      
+      <button id="bookBtn" class="success">
+        Book Now
+      </button>
+    </div>
 
-    <button id="bookBtn">Book</button>
-
-    <p id="message"></p>
+    <p id="message" class="hidden"></p>
 
     <div class="actions">
-      <button id="historyBtn">View Booking History</button>
-      <button id="logoutBtn">Logout</button>
+      <button id="historyBtn" class="secondary">
+        📋 View History
+      </button>
+      <button id="logoutBtn" class="danger">
+        Logout
+      </button>
     </div>
   </div>
 

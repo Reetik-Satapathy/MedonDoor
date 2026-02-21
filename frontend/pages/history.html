@@ -2,19 +2,30 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Booking History</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Booking History - MedOnDoor</title>
   <link rel="stylesheet" href="../css/styles.css">
 </head>
 <body>
-
   <div class="container">
-    <h2>My Bookings</h2>
+    <div class="dashboard-header">
+      <h2 class="dashboard-title">My Bookings</h2>
+    </div>
 
-    <!-- Bookings will be injected here -->
-    <div id="history"></div>
+    <div id="history">
+      <div class="empty-state">
+        <p>Loading your bookings...</p>
+      </div>
+    </div>
 
-    <button id="backBtn">Back</button>
-    <button id="logoutBtn">Logout</button>
+    <div class="actions">
+      <button id="backBtn" class="secondary">
+        ← Back to Booking
+      </button>
+      <button id="logoutBtn" class="danger">
+        Logout
+      </button>
+    </div>
   </div>
 
   <script src="../js/history.js"></script>
