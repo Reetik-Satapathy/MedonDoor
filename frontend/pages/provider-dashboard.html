@@ -2,15 +2,31 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Provider Dashboard</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Provider Dashboard - MedOnDoor</title>
   <link rel="stylesheet" href="../css/styles.css">
 </head>
 <body>
-
   <div class="container">
-    <h2>Provider Dashboard</h2>
-    <div id="bookings"></div>
-    <button id="logoutBtn">Logout</button>
+    <div class="dashboard-header">
+      <h2 class="dashboard-title">Provider Dashboard</h2>
+    </div>
+    
+    <p class="text-center" style="color: var(--text-secondary); margin-bottom: var(--spacing-xl);">
+      Manage your healthcare service requests
+    </p>
+
+    <div id="bookings">
+      <div class="empty-state">
+        <p>Loading available bookings...</p>
+      </div>
+    </div>
+
+    <div class="actions">
+      <button id="logoutBtn" class="danger">
+        Logout
+      </button>
+    </div>
   </div>
 
   <script src="../js/provider.js"></script>
