@@ -1,4 +1,4 @@
--- CREATE DATABASE healthcare_app;
+CREATE DATABASE IF NOT EXISTS healthcare_app;
 USE healthcare_app;
 
 

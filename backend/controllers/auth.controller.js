@@ -11,32 +11,43 @@ exports.register = async (req, res) => {
       return res.status(400).json({ message: "All fields are required" });
     }
 
-    // Check if user exists
     db.query(
       "SELECT * FROM users WHERE email = ?",
       [email],
       async (err, results) => {
-        if (results.length > 0) {
+
+        if (err) {
+          console.error("DB ERROR (SELECT):", err);
+          return res.status(500).json({ message: "Database error" });
+        }
+
+        if (results && results.length > 0) {
           return res.status(409).json({ message: "User already exists" });
         }
 
         const hashedPassword = await bcrypt.hash(password, 10);
 
-        // Insert user
         db.query(
           "INSERT INTO users (name, email, password, role) VALUES (?, ?, ?, ?)",
           [name, email, hashedPassword, role],
           (err, result) => {
-            if (err) return res.status(500).json(err);
+
+            if (err) {
+              console.error("DB ERROR (INSERT USER):", err);
+              return res.status(500).json({ message: "Database error" });
+            }
 
             const userId = result.insertId;
 
-            // If provider, create provider record
             if (role === "provider") {
               db.query(
                 "INSERT INTO providers (user_id, service_type) VALUES (?, ?)",
                 [userId, service_type || "doctor"],
-                () => {}
+                (err) => {
+                  if (err) {
+                    console.error("DB ERROR (INSERT PROVIDER):", err);
+                  }
+                }
               );
             }
 
@@ -45,8 +56,10 @@ exports.register = async (req, res) => {
         );
       }
     );
+
   } catch (error) {
-    res.status(500).json({ error: "Server error" });
+    console.error("SERVER ERROR:", error);
+    res.status(500).json({ message: "Server error" });
   }
 };
 

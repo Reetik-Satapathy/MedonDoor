@@ -11,7 +11,7 @@ document.getElementById("logoutBtn").onclick = logout;
 
 async function loadHistory() {
   try {
-    const res = await fetch("http://localhost:5000/api/bookings/my", {
+    const res = await fetch("/api/bookings/my", {
       headers: { Authorization: "Bearer " + token }
     });
 
@@ -151,7 +151,7 @@ function rateBooking(bookingId) {
     comment = document.getElementById("ratingComment").value.trim();
     
     try {
-      const res = await fetch("http://localhost:5000/api/ratings/add", {
+      const res = await fetch("/api/ratings/add", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

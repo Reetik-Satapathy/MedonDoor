@@ -14,7 +14,7 @@ if (logoutBtn) {
 
 async function loadBookings() {
   try {
-    const res = await fetch("http://localhost:5000/api/providers/bookings", {
+    const res = await fetch("/api/providers/bookings", {
       headers: { Authorization: "Bearer " + token }
     });
 
@@ -99,7 +99,7 @@ async function accept(id) {
 
   try {
     const res = await fetch(
-      `http://localhost:5000/api/providers/bookings/${id}/accept`,
+      `/api/providers/bookings/${id}/accept`,
       {
         method: "POST",
         headers: { Authorization: "Bearer " + token }
@@ -151,7 +151,7 @@ async function complete(id) {
 
   try {
     const res = await fetch(
-      `http://localhost:5000/api/providers/bookings/${id}/complete`,
+      `/api/providers/bookings/${id}/complete`,
       {
         method: "POST",
         headers: { Authorization: "Bearer " + token }
